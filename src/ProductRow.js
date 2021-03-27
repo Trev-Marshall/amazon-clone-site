@@ -1,8 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 import { db } from './firebase'
 
-function Product({ title, price, rating, image, id }) {
+
+function ProductRow({ title, price, rating, image, id }) {
 
     const addToCart = () => {
         console.log(id);
@@ -52,25 +53,26 @@ function Product({ title, price, rating, image, id }) {
     )
 }
 
-export default Product
+export default ProductRow
 
 const Container = styled.div`
-    position: relative;
-    background: white;
-    z-index: 10;
-    flex: 1;
+    background-color: white;
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
     padding: 20px;
     max-height: 400px;
+    min-width: 27%;
     margin: 10px;
-    display: flex;
-    flex-direction: column;
     border-radius: 4px;
 `
 
-const Title = styled.span``
+const Title = styled.span`
+    padding: 3px;`
 const Price = styled.span`
-    margin-top: 3px;
+    margin-top: -20px;
     font-weight: 500;
+    text-align: right;
 `
 const Rating = styled.div`
     display: flex;

@@ -1,8 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Product from './Product';
+import ProductRow from './ProductRow';
+import { db } from './firebase';
 
 function Home() {
+    const [products, setProducts] = useState([]);
+    const [productsTwo, setProductsTwo] = useState([]);
+
+    const getProductsTwo = () => {
+        db.collection('productsTwo').onSnapshot((snapshot) => {
+            let tempProducts = [];
+
+            tempProducts = snapshot.docs.map((doc) => (
+                {
+                    id: doc.id,
+                    productsTwo: doc.data()
+                }
+            ));
+            setProductsTwo(tempProducts);
+        })
+    }
+
+    const getProducts = () => {
+        db.collection('products').onSnapshot((snapshot) => {
+            let tempProducts = [];
+
+            tempProducts = snapshot.docs.map((doc) => (
+                {
+                    id: doc.id,
+                    product: doc.data()
+                }
+            ));
+            setProducts(tempProducts);
+        })
+    }
+
+    useEffect(() => {
+        getProducts();
+        getProductsTwo();
+    }, []);
+
     return (
         <Container>
             <Banner>
@@ -14,9 +52,31 @@ function Home() {
                 </BannerTextTwo>
             </Banner>
             <Content>
-                <Product />
-                <Product />
+                {
+                    products.map((data) => (
+                        <Product
+                            title={data.product.name}
+                            price={data.product.price}
+                            rating={data.product.rating}
+                            image={data.product.image}
+                            id={data.id}
+                        />
+                    ))
+                }
             </Content>
+            <ContentTwo>
+                {
+                    productsTwo.map((data) => (
+                        <ProductRow
+                            title={data.productsTwo.name}
+                            price={data.productsTwo.price}
+                            rating={data.productsTwo.rating}
+                            image={data.productsTwo.image}
+                            id={data.id}
+                        />
+                    ))
+                }
+            </ContentTwo>
         </Container>
     )
 }
@@ -57,4 +117,9 @@ const BannerText = styled.h1`
 
 const BannerTextTwo = styled.h3`
 
+`
+
+const ContentTwo = styled.div`
+    display: flex;
+    justify-content: space-around;
 `
