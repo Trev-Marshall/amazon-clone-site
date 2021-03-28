@@ -7,7 +7,15 @@ import {
     Link
 } from "react-router-dom";
 
-function Header() {
+function Header({ cartItems, user, signOut }) {
+    const getCount = () => {
+        let count = 0;
+        cartItems.forEach((item) => {
+            count += item.product.quantity;
+        });
+        return count;
+    }
+
     return (
         <Container>
             <HeaderLogo>
@@ -31,8 +39,8 @@ function Header() {
             </HeaderSearch>
 
             <HeaderNavItems>
-                <HeaderOption>
-                    <OptionLineOne>Hello, Trevor</OptionLineOne>
+                <HeaderOption onClick={signOut}>
+                    <OptionLineOne>Hello, {user.name}</OptionLineOne>
                     <OptionLineTwo>Account & Lists</OptionLineTwo>
                 </HeaderOption>
 
@@ -44,7 +52,7 @@ function Header() {
                 <HeaderOptionCart>
                     <Link to="/cart">
                         <ShoppingBasketIcon />
-                        <CartCount>5</CartCount>
+                        <CartCount>{getCount()}</CartCount>
                     </Link>
                 </HeaderOptionCart>
 
@@ -122,6 +130,7 @@ const HeaderNavItems = styled.div`
 
 const HeaderOption = styled.div`
     padding: 10px 9px 10px 9px;
+    cursor: pointer;
 `
 
 const HeaderOptionCart = styled.div`

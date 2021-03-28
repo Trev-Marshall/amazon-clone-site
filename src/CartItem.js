@@ -1,7 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
+import { db } from './firebase'
 
 function CartItem({ id, item }) {
+
+    const updateQuantity = (e) => {
+        db.collection('cartitems').doc(id).update({
+            quantity: parseInt(e.target.value)
+        })
+    }
+
+    const deleteItem = (e) => {
+        e.preventDefault();
+        db.collection('cartitems').doc(id).delete();
+    }
 
     let options = []
 
@@ -21,11 +33,14 @@ function CartItem({ id, item }) {
                     <CartItemQuantityContainer>
                         <select
                             value={item.quantity}
+                            onChange={updateQuantity}
                         >
                             {options}
                         </select>
                     </CartItemQuantityContainer>
-                    <CartItemDeleteContainer>Delete</CartItemDeleteContainer>
+                    <CartItemDeleteContainer
+                        onClick={deleteItem}
+                    >Delete</CartItemDeleteContainer>
                 </CartItemInfoBottom>
             </CartItemInfo>
             <CartItemPrice>

@@ -5,6 +5,7 @@ import { db } from './firebase'
 function Product({ title, price, rating, image, id }) {
 
     const addToCart = () => {
+        alert('Item added to cart');
         console.log(id);
         const cartItem = db.collection("cartitems").doc(id);
         cartItem.get()
