@@ -5,52 +5,52 @@ import { db } from './firebase'
 
 function ProductRow({ title, price, rating, image, id }) {
 
-    const addToCart = () => {
-        console.log(id);
-        const cartItem = db.collection("cartitems").doc(id);
-        cartItem.get()
-            .then((doc) => {
-                console.log(doc);
-                if (doc.exists) {
-                    cartItem.update({
-                        quantity: doc.data().quantity + 1
-                    })
-                } else {
-                    db.collection("cartitems").doc(id).set({
-                        name: title,
-                        image: image,
-                        price: price,
-                        quantity: 1
-                    })
-                }
-            })
-    }
+  const addToCart = () => {
+    console.log(id);
+    const cartItem = db.collection("cartitems").doc(id);
+    cartItem.get()
+      .then((doc) => {
+        console.log(doc);
+        if (doc.exists) {
+          cartItem.update({
+            quantity: doc.data().quantity + 1
+          })
+        } else {
+          db.collection("cartitems").doc(id).set({
+            name: title,
+            image: image,
+            price: price,
+            quantity: 1
+          })
+        }
+      })
+  }
 
-    return (
-        <Container>
-            <Title>
-                {title}
-            </Title>
-            <Price>
-                ${price}
-            </Price>
-            <Rating>
-                {
-                    Array(rating)
-                        .fill()
-                        .map(rating => <p>⭐️</p>)
-                }
-            </Rating>
-            <Image src={image} />
-            <ActionSection>
-                <AddToCartButton
-                    onClick={addToCart}
-                >
-                    Add to Cart
+  return (
+    <Container>
+      <Title>
+        {title}
+      </Title>
+      <Price>
+        ${price}
+      </Price>
+      <Rating>
+        {
+          Array(rating)
+            .fill()
+            .map(rating => <p>⭐️</p>)
+        }
+      </Rating>
+      <Image src={image} />
+      <ActionSection>
+        <AddToCartButton
+          onClick={addToCart}
+        >
+          Add to Cart
                 </AddToCartButton>
-            </ActionSection>
-        </Container>
-    )
+      </ActionSection>
+    </Container>
+  )
 }
 
 export default ProductRow
@@ -64,7 +64,8 @@ const Container = styled.div`
     max-height: 400px;
     min-width: 27%;
     margin: 10px;
-    border-radius: 4px;
+    border-radius: 20px;
+    box-shadow: 10px 5px 10px rgba(182, 194, 195, .5);
 `
 
 const Title = styled.span`
@@ -87,11 +88,15 @@ const Image = styled.img`
 `
 const AddToCartButton = styled.button`
     width: 100px;
-    height: 30px;
-    background-color: #f0c14b;
+    height: 50px;
+    background: #F2994A;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F2C94C, #F2994A);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F2C94C, #F2994A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     border: 2px solid #a99734;
     border-radius: 2px;
     cursor: pointer;
+    border-radius: 20px;
 `
 
 const ActionSection = styled.div`

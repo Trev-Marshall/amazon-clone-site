@@ -5,80 +5,81 @@ import ProductRow from './ProductRow';
 import { db } from './firebase';
 
 function Home() {
-    const [products, setProducts] = useState([]);
-    const [productsTwo, setProductsTwo] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [productsTwo, setProductsTwo] = useState([]);
 
-    const getProductsTwo = () => {
-        db.collection('productsTwo').onSnapshot((snapshot) => {
-            let tempProducts = [];
+  const getProductsTwo = () => {
+    db.collection('productsTwo').onSnapshot((snapshot) => {
+      let tempProducts = [];
 
-            tempProducts = snapshot.docs.map((doc) => (
-                {
-                    id: doc.id,
-                    productsTwo: doc.data()
-                }
-            ));
-            setProductsTwo(tempProducts);
-        })
-    }
+      tempProducts = snapshot.docs.map((doc) => (
+        {
+          id: doc.id,
+          productsTwo: doc.data()
+        }
+      ));
+      setProductsTwo(tempProducts);
+    })
+  }
 
-    const getProducts = () => {
-        db.collection('products').onSnapshot((snapshot) => {
-            let tempProducts = [];
+  const getProducts = () => {
+    db.collection('products').onSnapshot((snapshot) => {
+      let tempProducts = [];
 
-            tempProducts = snapshot.docs.map((doc) => (
-                {
-                    id: doc.id,
-                    product: doc.data()
-                }
-            ));
-            setProducts(tempProducts);
-        })
-    }
+      tempProducts = snapshot.docs.map((doc) => (
+        {
+          id: doc.id,
+          product: doc.data()
+        }
+      ));
+      setProducts(tempProducts);
+    })
+  }
 
-    useEffect(() => {
-        getProducts();
-        getProductsTwo();
-    }, []);
+  useEffect(() => {
+    getProducts();
+    getProductsTwo();
+  }, []);
 
-    return (
-        <Container>
-            <Banner>
-                <BannerText>
-                    AMAZON FIRE TV
+  return (
+    <Container>
+      <Banner>
+        <BannerText>
+          AMAZON FIRE TV
                 </BannerText>
-                <BannerTextTwo>
-                    Streaming media player with 4K Ultra HD and Alexa Voice Remote.
+        <BannerTextTwo>
+          Streaming media player with 4K Ultra HD and Alexa Voice Remote.
                 </BannerTextTwo>
-            </Banner>
-            <Content>
-                {
-                    products.map((data) => (
-                        <Product
-                            title={data.product.name}
-                            price={data.product.price}
-                            rating={data.product.rating}
-                            image={data.product.image}
-                            id={data.id}
-                        />
-                    ))
-                }
-            </Content>
-            <ContentTwo>
-                {
-                    productsTwo.map((data) => (
-                        <ProductRow
-                            title={data.productsTwo.name}
-                            price={data.productsTwo.price}
-                            rating={data.productsTwo.rating}
-                            image={data.productsTwo.image}
-                            id={data.id}
-                        />
-                    ))
-                }
-            </ContentTwo>
-        </Container>
-    )
+      </Banner>
+      <Content>
+        {
+          products.map((data) => (
+            <Product
+              title={data.product.name}
+              price={data.product.price}
+              rating={data.product.rating}
+              image={data.product.image}
+              id={data.id}
+            />
+          ))
+        }
+      </Content>
+      <Heading>Featured</Heading>
+      <ContentTwo>
+        {
+          productsTwo.map((data) => (
+            <ProductRow
+              title={data.productsTwo.name}
+              price={data.productsTwo.price}
+              rating={data.productsTwo.rating}
+              image={data.productsTwo.image}
+              id={data.id}
+            />
+          ))
+        }
+      </ContentTwo>
+    </Container>
+  )
 }
 
 export default Home;
@@ -86,7 +87,14 @@ export default Home;
 
 const Container = styled.div`
     max-width: 1500px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 10px;
+    border-radius: 3%;
+    overflow: hidden;
+    @media (max-width: 750px) {
+    border-radius: 0;
+    margin: 0;
+  }
 `
 
 const Banner = styled.div`
@@ -101,7 +109,6 @@ const Banner = styled.div`
     flex-direction: column;
     text-align: center;
     color: white;
-
 `
 
 const Content = styled.div`
@@ -109,6 +116,9 @@ const Content = styled.div`
     padding-right: 10px;
     margin-top: -20px;
     display: flex;
+    @media (max-width: 1100px) {
+    flex-direction: column;
+  }
 `
 
 const BannerText = styled.h1`
@@ -122,4 +132,19 @@ const BannerTextTwo = styled.h3`
 const ContentTwo = styled.div`
     display: flex;
     justify-content: space-around;
+    @media (max-width: 1300px) {
+    flex-direction: column;
+  }
+`
+const Heading = styled.h2`
+    width: fit-content;
+    padding: 20px 100px;
+    text-weight: bold;
+    text-decoration: underline;
+    margin: 30px auto 10px auto;
+    background: #f7ff0033;
+    background: -webkit-linear-gradient(to right, #db36a433, #f7ff0033);
+    background: linear-gradient(to right, #db36a433, #f7ff0033); 
+    border-radius: 25px;
+
 `

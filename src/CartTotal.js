@@ -3,34 +3,27 @@ import styled from 'styled-components';
 import NumberFormat from 'react-number-format';
 
 function CartTotal({ getCount, getSubtotal }) {
-    return (
-        <Container>
-            <Subtotal>Subtotal ({getCount()} items): <NumberFormat value={getSubtotal()} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Subtotal>
-            <CheckoutButton>Proceed to checkout</CheckoutButton>
-        </Container>
-    )
+  return (
+    <Container>
+      <Subtotal>Subtotal ({getCount()} items): <NumberFormat value={getSubtotal()} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Subtotal>
+      <CheckoutButton>Proceed to checkout</CheckoutButton>
+    </Container>
+  )
 }
 
 export default CartTotal
 
 const Container = styled.div`
-    height: 200px;
+    height: fit-content;
     flex: 0.2;
-    padding: 20px;
-    background: hsla(176, 49%, 84%, 1);
-
-background: linear-gradient(135deg, hsla(176, 49%, 84%, 1) 0%, hsla(0, 0%, 98%, 1) 100%);
-
-background: -moz-linear-gradient(135deg, hsla(176, 49%, 84%, 1) 0%, hsla(0, 0%, 98%, 1) 100%);
-
-background: -webkit-linear-gradient(135deg, hsla(176, 49%, 84%, 1) 0%, hsla(0, 0%, 98%, 1) 100%);
-
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#C2EAE7", endColorstr="#FBFBFB", GradientType=1 );
-text-align: right; // put in component later
-font-weight: 700; // put in component later
+    padding: 25px;
+    background: white;
+    text-align: right;
+    font-weight: 700;
+    border-radius: 50px;
 `
 
-const Subtotal = styled.h2`
+const Subtotal = styled.h3`
 
 `
 const CheckoutButton = styled.button`
@@ -38,9 +31,10 @@ const CheckoutButton = styled.button`
     width: 100%;
     padding: 4px 8px;
     border: 2px solid grey;
-    border-radius: 3px;
+    border-radius: 15px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 10px;
     :hover {
         opacity: .8;
     }

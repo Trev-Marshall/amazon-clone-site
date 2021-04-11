@@ -41,10 +41,12 @@ function App() {
           <Login setUser={setUser} />
         ) : (
           <Container>
-            <Header
-              signOut={signOut}
-              user={user}
-              cartItems={cartItems} />
+            <HeaderContainer>
+              <Header
+                signOut={signOut}
+                user={user}
+                cartItems={cartItems} />
+            </HeaderContainer>
 
             <Switch>
 
@@ -67,4 +69,15 @@ function App() {
 
 export default App;
 
-const Container = styled.div``
+const Container = styled.div`
+display: flex;
+@media (max-width: 750px) {
+    flex-direction: column;
+  }
+`
+const HeaderContainer = styled.div`
+  display: flex;
+  @media (max-width: 750px) {
+    width: 100%;
+  }
+`
