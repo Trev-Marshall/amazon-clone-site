@@ -109,6 +109,7 @@ const Banner = styled.div`
     flex-direction: column;
     text-align: center;
     color: white;
+    padding: 0 5px;
 `
 
 const Content = styled.div`
@@ -132,7 +133,7 @@ const BannerTextTwo = styled.h3`
 const ContentTwo = styled.div`
     display: flex;
     justify-content: space-around;
-    @media (max-width: 1300px) {
+    @media (max-width: 1000px) {
     flex-direction: column;
   }
 `

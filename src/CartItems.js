@@ -30,6 +30,9 @@ const Container = styled.div`
     margin-right: 18px;
     padding: 20px;
     border-radius: 4px;
+    @media (max-width: 1080px) {
+      margin: 0;
+    }
 `
 
 const Title = styled.div`

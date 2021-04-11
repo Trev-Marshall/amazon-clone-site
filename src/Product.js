@@ -98,11 +98,13 @@ background: linear-gradient(to right, #F2C94C, #F2994A); /* W3C, IE 10+/ Edge, F
     cursor: pointer;
     border-radius: 20px;
     margin: 3px;
+    align-self: flex-end;
 `
 
 const ActionSection = styled.div`
     display: flex;
+    height: 100%;
     justify-content: center;
     align-items: center;
-    margin-top: 12px;
+    margin-top: 15px;
 `

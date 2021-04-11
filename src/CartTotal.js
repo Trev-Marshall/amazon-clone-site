@@ -21,6 +21,9 @@ const Container = styled.div`
     text-align: right;
     font-weight: 700;
     border-radius: 50px;
+    @media (max-width: 1080px) {
+      border-radius: 0;
+    }
 `
 
 const Subtotal = styled.h3`

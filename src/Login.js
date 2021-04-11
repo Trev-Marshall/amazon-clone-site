@@ -38,7 +38,6 @@ export default Login
 const Container = styled.div`
     display: grid;
     place-items: center;
-    background-color: white;
     height: 100vh;
     width: 100vw;
 `
@@ -48,10 +47,18 @@ const Content = styled.div`
     text-align: center;
     padding: 100px;
     border-radius: 20px;
+    background-color: white;
+    @media (max-width: 1080px) {
+      margin: auto;
+      padding: 20px;
+    }
 `
 const AmazonLogo = styled.img`
     height: 80px;
     margin-bottom: 35px;
+    @media (max-width: 1080px) {
+      margin-top: 20px;
+    }
 `
 const LoginButton = styled.button`
     margin-top: 20px;

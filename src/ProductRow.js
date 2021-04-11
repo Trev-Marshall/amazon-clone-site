@@ -69,12 +69,15 @@ const Container = styled.div`
 `
 
 const Title = styled.span`
-    padding: 3px;`
+    padding: 3px 30px 3px 3px;
+`
+
 const Price = styled.span`
     margin-top: -20px;
     font-weight: 500;
     text-align: right;
 `
+
 const Rating = styled.div`
     display: flex;
 `
@@ -82,25 +85,28 @@ const Image = styled.img`
     max-height: 200px;
     object-fit: contain;
     transition: transform .3s ease-in-out;
+    margin-top: 5px;
     :hover {
         transform: scale(1.05);
     }
 `
+
 const AddToCartButton = styled.button`
     width: 100px;
     height: 50px;
-    background: #F2994A;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #F2C94C, #F2994A);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #F2C94C, #F2994A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background: #F2994A;
+background: -webkit-linear-gradient(to right, #F2C94C, #F2994A); 
+background: linear-gradient(to right, #F2C94C, #F2994A);
     border: 2px solid #a99734;
     border-radius: 2px;
     cursor: pointer;
     border-radius: 20px;
+    align-self: flex-end;
 `
 
 const ActionSection = styled.div`
     display: flex;
+    height: 100%;
     justify-content: center;
     align-items: center;
     margin-top: 12px;
